@@ -42,17 +42,42 @@ export default function HomePage() {
 
       {/* Karakter 8-bit yang berjalan mondar-mandir di pantai */}
       <div className="pointer-events-none fixed inset-x-0 bottom-0 z-10 h-48">
+        {/* Paling belakang */}
         <BeachCharacter
           jenis="laki-laki"
-          durasiPerjalanan="26s"
-          delay="0s"
-          posisiBawah="4%"
+          durasiPerjalanan="40s"
+          delay="-25s"
+          posisiBawah="14%"
+          variant={1}
+        />
+        <BeachCharacter
+          jenis="perempuan"
+          durasiPerjalanan="28s"
+          delay="-18s"
+          posisiBawah="11%"
+          variant={1}
         />
         <BeachCharacter
           jenis="perempuan"
           durasiPerjalanan="34s"
           delay="-12s"
-          posisiBawah="10%"
+          posisiBawah="8%"
+          variant={2}
+        />
+        <BeachCharacter
+          jenis="laki-laki"
+          durasiPerjalanan="18s"
+          delay="-5s"
+          posisiBawah="5%"
+          variant={2}
+        />
+        {/* Paling depan */}
+        <BeachCharacter
+          jenis="laki-laki"
+          durasiPerjalanan="26s"
+          delay="0s"
+          posisiBawah="2%"
+          variant={3}
         />
       </div>
 
