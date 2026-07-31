@@ -16,7 +16,7 @@ export default function HomePage() {
           FESTIVAL ANAK SHOLEH 2026
         </p>
 
-        <h1 className="fade-up mt-6 font-pixel text-2xl leading-relaxed text-cream pixel-text sm:text-4xl lg:text-5xl">
+        <h1 className="fade-up mt-6 font-pixel text-base leading-relaxed text-cream pixel-text sm:text-3xl lg:text-5xl">
           Assalaamualaikum
         </h1>
 
