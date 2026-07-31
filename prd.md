@@ -2,6 +2,7 @@
 
 ## 1. Project Overview
 **Nama Proyek:** Website Festival Anak Sholeh (FAS)
+**Target Pengguna:** Anak-anak usia 8-14 tahun, orang tua, dan panitia acara.
 **Tema:** Pantai / Laut
 **Konsep Visual:** 8-bit / Pixel Art
 

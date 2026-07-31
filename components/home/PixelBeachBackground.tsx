@@ -1,328 +1,280 @@
-import PixelSprite from "./PixelSprite";
-
-type PixelCloudProps = {
-  className: string;
-  durasi: string;
-  delay: string;
-};
-
-function PixelCloud({ className, durasi, delay }: PixelCloudProps) {
+export default function PixelBeachBackground() {
   return (
-    <div
-      className={`cloud-drift absolute ${className}`}
-      style={{ animationDuration: durasi, animationDelay: delay }}
-      aria-hidden="true"
+    <div className="fixed inset-0 overflow-hidden bg-[#5dc1f9]" aria-hidden="true">
+      {/* Clouds */}
+      <Cloud top="15%" scale="scale-150" durasi="80s" delay="0s" />
+      <Cloud top="30%" scale="scale-125" durasi="110s" delay="-40s" />
+
+      {/* Ocean */}
+      <div className="absolute inset-x-0 top-[62%] bottom-[22%] bg-[#22a2eb]">
+        <div className="absolute top-0 inset-x-0 h-1 bg-[#4bc0f8]" />
+        <div className="absolute top-1 inset-x-0 h-1 bg-[#37b1f3]" />
+        
+        {/* Waves */}
+        <div className="absolute top-[20%] left-[10%] h-1 w-16 bg-[#4bc0f8]" />
+        <div className="absolute top-[40%] left-[30%] h-1 w-24 bg-[#4bc0f8]" />
+        <div className="absolute top-[60%] left-[60%] h-1 w-12 bg-[#4bc0f8]" />
+        <div className="absolute top-[80%] left-[20%] h-1 w-32 bg-[#4bc0f8]" />
+        {/* Ships */}
+        <PixelShip top="-4%" scale="scale-50 opacity-70" durasi="120s" delay="-20s" direction="left" />
+        <PixelShip top="4%" scale="scale-75 opacity-90" durasi="95s" delay="-50s" direction="right" />
+        <PixelShip top="15%" scale="scale-90" durasi="80s" delay="-10s" direction="left" />
+      </div>
+
+      {/* Sand */}
+      <div className="absolute inset-x-0 bottom-0 h-[22%] bg-[#f5d5a2]">
+        <div className="absolute top-0 inset-x-0 h-1 bg-[#ebd0a3]" />
+        
+        {/* Pixel Dunes (with dark edge) */}
+        <div className="absolute top-[-4px] left-[2%] h-[4px] w-[20%] bg-[#ebd0a3]" />
+        <div className="absolute top-[-2px] left-[2%] h-[4px] w-[20%] bg-[#f5d5a2]" />
+        <div className="absolute top-[-8px] left-[6%] h-[8px] w-[12%] bg-[#ebd0a3]" />
+        <div className="absolute top-[-6px] left-[6%] h-[8px] w-[12%] bg-[#f5d5a2]" />
+        
+        <div className="absolute top-[-6px] right-[5%] h-[6px] w-[25%] bg-[#ebd0a3]" />
+        <div className="absolute top-[-4px] right-[5%] h-[6px] w-[25%] bg-[#f5d5a2]" />
+        <div className="absolute top-[-12px] right-[10%] h-[12px] w-[15%] bg-[#ebd0a3]" />
+        <div className="absolute top-[-10px] right-[10%] h-[12px] w-[15%] bg-[#f5d5a2]" />
+        
+        {/* Wave Foam */}
+        <div className="absolute top-[-2px] inset-x-0 h-[2px] bg-white opacity-60" />
+        <div className="absolute top-[-6px] left-[25%] h-[2px] w-8 bg-white opacity-60" />
+        <div className="absolute top-[-4px] right-[35%] h-[2px] w-12 bg-white opacity-60" />
+        
+        {/* Sand dots */}
+        <div className="absolute top-[20%] left-[15%] h-1 w-1 bg-[#e0b87c]" />
+        <div className="absolute top-[50%] left-[5%] h-1 w-1 bg-[#e0b87c]" />
+        <div className="absolute top-[30%] left-[45%] h-1 w-1 bg-[#e0b87c]" />
+        <div className="absolute top-[60%] left-[35%] h-1 w-1 bg-[#e0b87c]" />
+        <div className="absolute top-[40%] left-[75%] h-1 w-1 bg-[#e0b87c]" />
+        <div className="absolute top-[70%] left-[85%] h-1 w-1 bg-[#e0b87c]" />
+      </div>
+
+      {/* Palm Trees */}
+      <PixelPalmTree className="bottom-[22%] left-[2%] scale-[1.55]" lean="right" />
+      <PixelPalmTree className="bottom-[22%] left-[18%] scale-[1.3]" lean="straight" />
+      <PixelPalmTree className="bottom-[22%] left-[10%] scale-[1.0]" lean="straight" />
+      
+      <PixelPalmTree className="bottom-[22%] right-[5%] scale-[1.45]" lean="left" />
+    </div>
+  );
+}
+
+function Cloud({ top, scale, durasi, delay }: { top: string, scale: string, durasi: string, delay: string }) {
+  return (
+    <div 
+      className="absolute inset-x-0 cloud-drift opacity-90"
+      style={{ top, animationDuration: durasi, animationDelay: delay }}
     >
-      <div className="relative h-7 w-24 border-4 border-ink bg-white">
-        <div className="absolute -top-4 left-2 h-5 w-9 border-4 border-b-0 bg-white" />
-        <div className="absolute -top-2 right-3 h-4 w-10 border-4 border-b-0 bg-white" />
+      <div className={`relative ${scale}`}>
+        <div className="absolute bottom-0 left-0 h-4 w-24 bg-white" />
+        <div className="absolute bottom-4 left-2 h-4 w-20 bg-white" />
+        <div className="absolute bottom-8 left-6 h-4 w-12 bg-white" />
+        <div className="absolute bottom-12 left-8 h-4 w-8 bg-white" />
       </div>
     </div>
   );
 }
 
-function PixelSun() {
+function PixelShip({ top, scale = "scale-100", durasi, delay, direction = "left" }: { top: string, scale?: string, durasi: string, delay: string, direction?: "left" | "right" }) {
+  const isRight = direction === "right";
+  const sailClass = isRight ? "ship-sail-reverse" : "ship-sail";
+
   return (
-    <div
-      className="sun-glow absolute right-[10%] top-[8%] h-16 w-16 border-4 border-sun-dark bg-sun"
-      aria-hidden="true"
-    />
+    <div 
+      className={`absolute inset-x-0 ${sailClass}`} 
+      style={{ top, animationDuration: durasi, animationDelay: delay }}
+    >
+      <div className={`relative ship-bob w-32 h-24 origin-bottom ${scale}`}>
+        <div className={`absolute inset-0 ${isRight ? '-scale-x-100' : ''}`}>
+          {/* Tiang */}
+          <div className="absolute bottom-4 left-12 h-16 w-[4px] bg-[#4a2f1d]" />
+          
+          {/* Layar Kiri */}
+          <div className="absolute bottom-6 left-6 h-2 w-6 bg-white" />
+          <div className="absolute bottom-8 left-8 h-2 w-4 bg-white" />
+          <div className="absolute bottom-10 left-10 h-2 w-2 bg-white" />
+          <div className="absolute bottom-12 left-10 h-6 w-2 bg-white" />
+
+          {/* Layar Kanan */}
+          <div className="absolute bottom-6 left-14 h-10 w-8 bg-white" />
+          <div className="absolute bottom-8 left-14 h-8 w-10 bg-white" />
+          <div className="absolute bottom-12 left-14 h-4 w-6 bg-white" />
+          <div className="absolute bottom-16 left-14 h-2 w-4 bg-white" />
+
+          {/* Badan Kapal */}
+          <div className="absolute bottom-0 left-0 h-[8px] w-28 bg-[#8d5524]" />
+          <div className="absolute bottom-[8px] left-2 h-[8px] w-24 bg-[#a66a33]" />
+        </div>
+      </div>
+    </div>
   );
 }
 
-/* =====================
-   Pohon kelapa
-   ===================== */
+type Pt = readonly [number, number];
 
-// Lebar batang dari pangkal (bawah) hingga pucuk (atas),
-// makin ke atas makin mengecil seperti pohon sungguhan
-const SEGMEN_BATANG = [
-  "w-7",
-  "w-7",
-  "w-6",
-  "w-6",
-  "w-5",
-  "w-5",
-  "w-4",
-  "w-4",
-  "w-3",
-  "w-3",
-];
+const q = (n: number) => Math.round(n / 2) * 2;
 
-type PelepahData = {
-  arahX: number;
-  arahY: number;
-  panjang: number;
+const APEX_Y = 44;
+
+const TRUNK_EDGES: Record<'straight' | 'right', { left: Pt[]; right: Pt[] }> = {
+  straight: {
+    left: [[64, 180], [64, 130], [66, 80], [66, APEX_Y]],
+    right: [[76, 180], [76, 130], [74, 80], [74, APEX_Y]],
+  },
+  right: {
+    left: [[64, 180], [74, 130], [82, 80], [88, APEX_Y]],
+    right: [[76, 180], [84, 130], [90, 80], [96, APEX_Y]],
+  },
 };
 
-// Setiap pelepah adalah tangga kotak-kotak yang menyebar dari pusat kanopi
-const PELEPAH: PelepahData[] = [
-  { arahX: -1, arahY: -1, panjang: 4 }, // kiri atas
-  { arahX: -1, arahY: 0, panjang: 5 }, // kiri
-  { arahX: -1, arahY: 1, panjang: 4 }, // kiri bawah
-  { arahX: 0, arahY: 1, panjang: 5 }, // tengah bawah
-  { arahX: 1, arahY: -1, panjang: 4 }, // kanan atas
-  { arahX: 1, arahY: 0, panjang: 5 }, // kanan
-  { arahX: 1, arahY: 1, panjang: 4 }, // kanan bawah
+const FRONDS_STRAIGHT: [number, number, number][] = [
+  [-160, 56, 30],
+  [-138, 60, 56],
+  [-112, 54, 66],
+  [-90, 40, 34],
+  [-68, 54, 64],
+  [-42, 60, 54],
+  [-20, 52, 26],
 ];
 
-// Warna pelepah: hijau muda, hijau terang, dan hijau tua untuk ujung
-const WARNA_PELEPAH = ["#43a047", "#8fd694", "#256d2a"];
+const FRONDS_RIGHT: [number, number, number][] = [
+  [-160, 56, 30],
+  [-138, 60, 56],
+  [-112, 54, 66],
+  [-90, 40, 34],
+  [-68, 54, 64],
+  [-42, 60, 54],
+  [-20, 52, 26],
+  [2, 46, 22],
+];
 
-// Titik pusat kanopi tempat semua pelepah bertemu (dalam piksel)
-const PUSAT_DAUN = { x: 88, y: 30 };
+function cubicPoint(p0: Pt, c1: Pt, c2: Pt, p1: Pt, t: number): Pt {
+  const u = 1 - t;
+  return [
+    q(u * u * u * p0[0] + 3 * u * u * t * c1[0] + 3 * u * t * t * c2[0] + t * t * t * p1[0]),
+    q(u * u * u * p0[1] + 3 * u * u * t * c1[1] + 3 * u * t * t * c2[1] + t * t * t * p1[1]),
+  ];
+}
 
-// Jarak antar kotak pelepah (lebih rapat dari ukuran kotak agar tersambung)
-const JARAK_ANTAR_KOTAK = 8;
+function frondParts(crown: Pt, angleDeg: number, len: number, droop: number, wBase: number) {
+  const rad = (angleDeg * Math.PI) / 180;
+  const dir: Pt = [Math.cos(rad), Math.sin(rad)];
+  let perp: Pt = [-dir[1], dir[0]];
+  if (perp[1] < 0) perp = [-perp[0], -perp[1]];
 
-function renderPelepah(pelepah: PelepahData, indeks: number) {
-  const kotakPelepah = [];
+  const tip: Pt = [q(crown[0] + dir[0] * len), q(crown[1] + dir[1] * len + droop)];
+  const c1: Pt = [q(crown[0] + (dir[0] * len) / 3), q(crown[1] + (dir[1] * len) / 3 + droop / 9)];
+  const c2: Pt = [q(crown[0] + (dir[0] * len * 2) / 3), q(crown[1] + (dir[1] * len * 2) / 3 + (droop * 4) / 9)];
+  const w = (t: number) => wBase * (1 - 0.85 * t);
 
-  for (let langkah = 0; langkah < pelepah.panjang; langkah++) {
-    const posisiX = PUSAT_DAUN.x + pelepah.arahX * langkah * JARAK_ANTAR_KOTAK;
-    const posisiY = PUSAT_DAUN.y + pelepah.arahY * langkah * JARAK_ANTAR_KOTAK;
+  const o1L: Pt = [q(c1[0] + perp[0] * w(1 / 3) * 1.1), q(c1[1] + perp[1] * w(1 / 3) * 1.1)];
+  const o2L: Pt = [q(c2[0] + perp[0] * w(2 / 3) * 1.1), q(c2[1] + perp[1] * w(2 / 3) * 1.1)];
+  const o1U: Pt = [q(c1[0] - perp[0] * w(1 / 3) * 0.9), q(c1[1] - perp[1] * w(1 / 3) * 0.9)];
+  const o2U: Pt = [q(c2[0] - perp[0] * w(2 / 3) * 0.9), q(c2[1] - perp[1] * w(2 / 3) * 0.9)];
 
-    // Kotak terakhir selalu hijau tua supaya ujung pelepah terlihat jelas
-    const warnaKotak =
-      langkah === pelepah.panjang - 1
-        ? WARNA_PELEPAH[2]
-        : WARNA_PELEPAH[langkah % 2];
+  const blade = `M ${crown[0]} ${crown[1]} C ${o1L[0]} ${o1L[1]} ${o2L[0]} ${o2L[1]} ${tip[0]} ${tip[1]} C ${o2U[0]} ${o2U[1]} ${o1U[0]} ${o1U[1]} ${crown[0]} ${crown[1]} Z`;
+  const spine = `M ${crown[0]} ${crown[1]} C ${c1[0]} ${c1[1]} ${c2[0]} ${c2[1]} ${tip[0]} ${tip[1]}`;
 
-    kotakPelepah.push(
-      <div
-        key={langkah}
-        className="absolute h-2.5 w-2.5"
-        style={{
-          left: posisiX,
-          top: posisiY,
-          backgroundColor: warnaKotak,
-        }}
-      />
+  const leaflets: string[] = [];
+  for (const t of [0.5, 0.67, 0.84, 0.97]) {
+    const p = cubicPoint(crown, c1, c2, tip, t);
+    const wt = w(t);
+    const base: Pt = [q(p[0] + perp[0] * wt), q(p[1] + perp[1] * wt)];
+    const llen = 8 * (1.4 - t);
+    const ld: Pt = [perp[0] * 0.7 + dir[0] * 0.55, perp[1] * 0.7 + dir[1] * 0.55 + 0.35];
+    const ll = Math.hypot(ld[0], ld[1]);
+    leaflets.push(
+      `M ${base[0]} ${base[1]} L ${q(base[0] + (ld[0] / ll) * llen)} ${q(base[1] + (ld[1] / ll) * llen)}`
     );
   }
 
-  return <div key={indeks} className="absolute inset-0">{kotakPelepah}</div>;
+  return { blade, spine, leaflets, tip };
 }
 
-function Kanopi() {
-  return (
-    <div className="palm-sway relative h-40 w-44">
-      {PELEPAH.map((pelepah, indeks) => renderPelepah(pelepah, indeks))}
+function PixelPalmTree({ className, lean }: { className: string; lean: 'left' | 'right' | 'straight' }) {
+  const key = lean === 'straight' ? 'straight' : 'right';
+  const apexX = key === 'straight' ? 70 : 92;
+  const crown: Pt = [apexX, APEX_Y + 2];
+  const edges = TRUNK_EDGES[key];
+  const { left, right } = edges;
+  const fronds = key === 'straight' ? FRONDS_STRAIGHT : FRONDS_RIGHT;
 
-      {/* Buah kelapa */}
-      <div className="absolute left-[34px] top-[42px] h-2.5 w-2.5 border-2 border-ink bg-[#7a4a1f]" />
-      <div className="absolute left-[44px] top-[46px] h-2.5 w-2.5 border-2 border-ink bg-[#8d5524]" />
-      <div className="absolute left-[54px] top-[42px] h-2.5 w-2.5 border-2 border-ink bg-[#6d4119]" />
-    </div>
-  );
-}
+  const trunkPath = `M ${left[0][0]} ${left[0][1]} C ${left[1][0]} ${left[1][1]} ${left[2][0]} ${left[2][1]} ${left[3][0]} ${left[3][1]} C ${right[2][0]} ${right[2][1]} ${right[1][0]} ${right[1][1]} ${right[0][0]} ${right[0][1]} Z`;
 
-function Batang() {
-  return (
-    <div className="flex flex-col items-center">
-      {SEGMEN_BATANG.map(function renderSegmen(lebar, indeks) {
-        // Warna batang berselang-seling agar terlihat garis-garis khas 8-bit
-        const warnaBatang = indeks % 2 === 0 ? "bg-trunk" : "bg-[#a5672b]";
+  const rings: string[] = [];
+  for (let t = 0.08; t <= 0.85; t += 0.11) {
+    const L = cubicPoint(left[0], left[1], left[2], left[3], t);
+    const R = cubicPoint(right[0], right[1], right[2], right[3], t);
+    const m = [q((L[0] + R[0]) / 2), q((L[1] + R[1]) / 2)];
+    rings.push(`M ${L[0]} ${L[1]} Q ${m[0]} ${m[1] + 4} ${R[0]} ${R[1]}`);
+  }
 
-        return (
-          <div
-            key={indeks}
-            className={`h-2 border-x-2 border-b-2 border-ink ${lebar} ${warnaBatang}`}
-          />
-        );
-      })}
-
-      {/* Pangkal batang yang melebar */}
-      <div className="h-1.5 w-8 border-x-2 border-b-2 border-ink bg-trunk" />
-    </div>
-  );
-}
-
-type PixelPalmTreeProps = {
-  className: string;
-  ukuran: "besar" | "sedang" | "kecil";
-};
-
-function PixelPalmTree({ className, ukuran }: PixelPalmTreeProps) {
-  // Pohon kecil diberi warna lebih redup supaya terlihat jauh di cakrawala
-  const kelasUkuran =
-    ukuran === "besar"
-      ? ""
-      : ukuran === "sedang"
-        ? "scale-75"
-        : "scale-[0.45] opacity-80";
+  const prepared = fronds.map(([a, l, d], i) => ({
+    ...frondParts(crown, a, l, d, (8 * l) / 60),
+    id: `palm-${key}-${i}`,
+    isUp: a >= -100 && a <= -80,
+  }));
 
   return (
-    <div className={`absolute ${kelasUkuran} ${className}`} aria-hidden="true">
-      <div className="flex flex-col items-center">
-        <Kanopi />
-        <Batang />
+    <div className={`absolute ${className} palm-sway`}>
+      <div className={lean === 'left' ? '-scale-x-100' : undefined}>
+        <svg width={150} height={180} viewBox="0 0 150 180" fill="none" shapeRendering="crispEdges">
+          <defs>
+            <linearGradient id={`trunk-${key}`} gradientUnits="userSpaceOnUse" x1={50} y1={0} x2={105} y2={0}>
+              <stop offset="0" stopColor="#7c4a26" />
+              <stop offset="0.3" stopColor="#a67c52" />
+              <stop offset="0.65" stopColor="#c9a06e" />
+              <stop offset="1" stopColor="#ddb98b" />
+            </linearGradient>
+            {prepared.map((f) => (
+              <linearGradient
+                key={f.id}
+                id={f.id}
+                gradientUnits="userSpaceOnUse"
+                x1={crown[0]}
+                y1={crown[1]}
+                x2={f.tip[0]}
+                y2={f.tip[1]}
+              >
+                <stop offset="0" stopColor={f.isUp ? "#7ad35f" : "#63c457"} />
+                <stop offset="0.45" stopColor="#459e3d" />
+                <stop offset="1" stopColor="#2e7d32" />
+              </linearGradient>
+            ))}
+          </defs>
 
-        {/* Bayangan pohon di atas pasir */}
-        <div className="h-1.5 w-16 bg-ink/25" />
-        <div className="h-1 w-24 bg-ink/15" />
-      </div>
-    </div>
-  );
-}
+          <path d={trunkPath} fill={`url(#trunk-${key})`} />
+          {rings.map((d, i) => (
+            <path key={i} d={d} stroke="#7a4a2b" strokeWidth={2} opacity={0.5} fill="none" />
+          ))}
 
-/* =====================
-   Gundukan dan ornamen pasir
-   ===================== */
+          {/* Base sand mound to embed the tree */}
+          <ellipse cx={70} cy={178} rx={22} ry={6} fill="#ebd0a3" />
+          <ellipse cx={70} cy={176} rx={16} ry={4} fill="#f5d5a2" />
 
-type GundukanPasirProps = {
-  className: string;
-};
+          <ellipse cx={crown[0]} cy={crown[1] + 8} rx={30} ry={14} fill="#1f5e21" opacity={0.25} />
 
-function GundukanPasir({ className }: GundukanPasirProps) {
-  return (
-    <div className={`absolute ${className}`} aria-hidden="true">
-      <div className="h-2 w-16 bg-[#f2cd72]" />
-      <div className="h-2 w-24 bg-[#ecbf58]" />
-      <div className="h-2 w-32 bg-[#e5b248]" />
-      <div className="h-2 w-40 bg-[#dda63c]" />
-    </div>
-  );
-}
+          <ellipse cx={crown[0] - 6} cy={crown[1] + 8} rx={4} ry={4} fill="#6b4423" stroke="#4c2f15" strokeWidth={1} />
+          <ellipse cx={crown[0] + 4} cy={crown[1] + 10} rx={4} ry={4} fill="#6b4423" stroke="#4c2f15" strokeWidth={1} />
+          <ellipse cx={crown[0] + 2} cy={crown[1] + 6} rx={4} ry={4} fill="#5c3a1e" />
+          <ellipse cx={crown[0] - 6} cy={crown[1] + 8} rx={2} ry={2} fill="#8a6238" />
 
-// Bintang laut: X tebal dengan warna terang di ujung
-const BINTANG_LAUT = [
-  "ll...ll",
-  "lo...ol",
-  ".oo.oo.",
-  "..owo..",
-  ".oo.oo.",
-  "lo...ol",
-  "ll...ll",
-];
+          {prepared.map((f) => (
+            <g key={f.id}>
+              <path d={f.blade} fill={`url(#${f.id})`} />
+              <path d={f.spine} stroke="#256129" strokeWidth={2} strokeLinecap="square" opacity={0.6} />
+              {!f.isUp &&
+                f.leaflets.map((d, j) => (
+                  <path key={j} d={d} stroke="#2b6b2c" strokeWidth={2} strokeLinecap="square" />
+                ))}
+            </g>
+          ))}
 
-const WARNA_BINTANG_LAUT = {
-  o: "#ff8a50",
-  l: "#ffb37a",
-  w: "#fff3d6",
-};
-
-// Kerang: kipas putih dengan garis pink
-const KERANG = [
-  ".wwwww.",
-  "wwppwww",
-  "wwwwwww",
-  "wwppwww",
-  ".wwwww.",
-];
-
-const WARNA_KERANG = {
-  w: "#fde8d7",
-  p: "#f3a6bd",
-};
-
-// Bola pantai: garis-garis merah, putih, dan biru dengan bingkai gelap
-const BOLA_PANTAI = [
-  "kkkkkkkk",
-  "kwrrwwbk",
-  "kwrrwwbk",
-  "kwrrwwbk",
-  "kwrrwwbk",
-  "kwrrwwbk",
-  "kwrrwwbk",
-  "kkkkkkkk",
-];
-
-const WARNA_BOLA_PANTAI = {
-  k: "#16324a",
-  r: "#e53935",
-  w: "#ffffff",
-  b: "#1e88e5",
-};
-
-type OrnamenPasirProps = {
-  baris: string[];
-  warna: Record<string, string>;
-  className: string;
-  ukuranPiksel?: number;
-};
-
-// Ornamen dibungkus dengan garis bayangan tipis agar terkesan
-// setengah tertanam di pasir, bukan sekadar menempel
-function OrnamenPasir({
-  baris,
-  warna,
-  className,
-  ukuranPiksel = 4,
-}: OrnamenPasirProps) {
-  return (
-    <div className={`absolute ${className}`} aria-hidden="true">
-      <PixelSprite baris={baris} warna={warna} ukuranPiksel={ukuranPiksel} />
-      <div className="mt-1 h-1.5 bg-[#d3a848]/70" />
-    </div>
-  );
-}
-
-export default function PixelBeachBackground() {
-  return (
-    <div className="fixed inset-0 overflow-hidden" aria-hidden="true">
-      {/* Langit pantai */}
-      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-sky to-sky-deep" />
-
-      <PixelSun />
-
-      <PixelCloud className="top-[12%] left-0" durasi="80s" delay="0s" />
-      <PixelCloud className="top-[24%] left-0" durasi="100s" delay="-40s" />
-
-      {/* Laut dengan garis ombak yang bergerak */}
-      <div className="absolute inset-x-0 bottom-[16%] top-[55%] bg-gradient-to-b from-ocean to-ocean-deep">
-        <div className="wave-band absolute inset-x-0 top-0 h-4" />
-        <div className="wave-band-2 absolute inset-x-0 top-4 h-4" />
-      </div>
-
-      {/* Pohon kelapa: besar di kanan, sedang di kiri, kecil di cakrawala */}
-      <PixelPalmTree
-        className="right-[4%] bottom-[12%] hidden md:flex"
-        ukuran="besar"
-      />
-      <PixelPalmTree
-        className="left-[6%] bottom-[13%] hidden lg:flex"
-        ukuran="sedang"
-      />
-      <PixelPalmTree
-        className="left-[38%] bottom-[16%] hidden sm:flex"
-        ukuran="kecil"
-      />
-
-      {/* Pasir pantai */}
-      <div className="absolute inset-x-0 bottom-0 h-[16%] bg-gradient-to-b from-sand to-sand-dark">
-        {/* Buih ombak di garis pertemuan laut dan pasir */}
-        <div className="sand-foam absolute inset-x-0 top-0 h-2.5" />
-        <div className="absolute inset-x-0 top-[10px] h-2 bg-sand-dark/60" />
-
-        {/* Butiran pasir */}
-        <div className="sand-dots absolute inset-0" />
-
-        {/* Gundukan pasir di sisi kiri dan kanan */}
-        <GundukanPasir className="bottom-0 left-0" />
-        <GundukanPasir className="bottom-0 right-0" />
-
-        {/* Ornamen pantai */}
-        <OrnamenPasir
-          className="bottom-[4%] left-[10%]"
-          baris={BINTANG_LAUT}
-          warna={WARNA_BINTANG_LAUT}
-        />
-        <OrnamenPasir
-          className="bottom-[2%] left-[24%]"
-          baris={KERANG}
-          warna={WARNA_KERANG}
-        />
-        <OrnamenPasir
-          className="bottom-[3%] right-[14%]"
-          baris={BOLA_PANTAI}
-          warna={WARNA_BOLA_PANTAI}
-        />
-        <OrnamenPasir
-          className="bottom-[2%] right-[26%]"
-          baris={KERANG}
-          warna={WARNA_KERANG}
-        />
+          <path d={`M ${crown[0]} ${crown[1] + 2} Q ${crown[0] - 12} ${crown[1] - 20} ${crown[0] - 8} ${crown[1] - 34}`} stroke="#7ed957" strokeWidth={6} strokeLinecap="square" />
+          <path d={`M ${crown[0]} ${crown[1] + 2} Q ${crown[0]} ${crown[1] - 26} ${crown[0]} ${crown[1] - 40}`} stroke="#7ed957" strokeWidth={6} strokeLinecap="square" />
+          <path d={`M ${crown[0]} ${crown[1] + 2} Q ${crown[0] + 12} ${crown[1] - 20} ${crown[0] + 8} ${crown[1] - 34}`} stroke="#7ed957" strokeWidth={6} strokeLinecap="square" />
+        </svg>
       </div>
     </div>
   );

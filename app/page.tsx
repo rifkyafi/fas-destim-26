@@ -46,13 +46,13 @@ export default function HomePage() {
           jenis="laki-laki"
           durasiPerjalanan="26s"
           delay="0s"
-          posisiBawah="10%"
+          posisiBawah="4%"
         />
         <BeachCharacter
           jenis="perempuan"
           durasiPerjalanan="34s"
           delay="-12s"
-          posisiBawah="22%"
+          posisiBawah="10%"
         />
       </div>
 

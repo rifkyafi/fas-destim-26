@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 type BeachCharacterProps = {
   jenis: "laki-laki" | "perempuan";
   durasiPerjalanan: string;
@@ -63,9 +67,19 @@ export default function BeachCharacter({
   delay,
   posisiBawah,
 }: BeachCharacterProps) {
+  const [showHai, setShowHai] = useState(false);
+
+  const handleClick = () => {
+    setShowHai(true);
+    setTimeout(() => {
+      setShowHai(false);
+    }, 3000);
+  };
+
   return (
     <div
-      className="walker"
+      className={`walker cursor-pointer pointer-events-auto ${showHai ? "is-paused" : ""}`}
+      onClick={handleClick}
       style={
         {
           bottom: posisiBawah,
@@ -75,6 +89,14 @@ export default function BeachCharacter({
       }
       aria-hidden="true"
     >
+      {showHai && (
+        <div className="absolute -top-12 left-1/2 -translate-x-1/2 flex flex-col items-center z-50 pointer-events-none">
+          <div className="bg-white border-2 border-ink px-2 py-1 text-[8px] sm:text-[10px] font-pixel text-ink">
+            Hai!
+          </div>
+          <div className="h-2 w-2 bg-ink -mt-[2px] ml-1" />
+        </div>
+      )}
       <div className="walker-inner">
         {jenis === "laki-laki" ? <KarakterLakiLaki /> : <KarakterPerempuan />}
       </div>

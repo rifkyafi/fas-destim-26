@@ -5,7 +5,7 @@ export default function Footer() {
         FESTIVAL ANAK SHOLEH 2026
       </p>
       <p className="mt-2 text-xl text-sky">
-        27 September 2026 &middot; Tema Pantai &middot; Gaya 8-bit
+        27 September 2026 &middot; Generus Desa Timur &middot; Boyolali Timur
       </p>
     </footer>
   );
