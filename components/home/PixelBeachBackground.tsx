@@ -1,20 +1,65 @@
+const BINTANG: { atas: string; kiri: string; delay: string; durasi: string }[] = [
+  { atas: "6%", kiri: "12%", delay: "0s", durasi: "2.4s" },
+  { atas: "14%", kiri: "30%", delay: "0.6s", durasi: "3.2s" },
+  { atas: "4%", kiri: "45%", delay: "1.1s", durasi: "2.8s" },
+  { atas: "10%", kiri: "58%", delay: "0.2s", durasi: "2.2s" },
+  { atas: "18%", kiri: "74%", delay: "0.9s", durasi: "3.6s" },
+  { atas: "5%", kiri: "86%", delay: "1.4s", durasi: "2.6s" },
+  { atas: "26%", kiri: "8%", delay: "0.4s", durasi: "3s" },
+  { atas: "30%", kiri: "38%", delay: "1.6s", durasi: "2.4s" },
+  { atas: "24%", kiri: "66%", delay: "0.7s", durasi: "3.4s" },
+  { atas: "12%", kiri: "20%", delay: "1.2s", durasi: "2s" },
+  { atas: "20%", kiri: "52%", delay: "0.3s", durasi: "3.8s" },
+  { atas: "8%", kiri: "70%", delay: "1.8s", durasi: "2.8s" },
+];
+
 export default function PixelBeachBackground() {
   return (
-    <div className="fixed inset-0 overflow-hidden bg-[#5dc1f9]" aria-hidden="true">
+    <div className="fixed inset-0 overflow-hidden bg-[#5dc1f9] dark:bg-[#0d1f45]" aria-hidden="true">
+      {/* Bintang (hanya tampil malam) */}
+      <div className="absolute inset-0 opacity-0 dark:opacity-100">
+        {BINTANG.map((bintang, i) => (
+          <div
+            key={i}
+            className="star-twinkle absolute h-1 w-1 bg-white"
+            style={{
+              top: bintang.atas,
+              left: bintang.kiri,
+              animationDelay: bintang.delay,
+              animationDuration: bintang.durasi,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Matahari terbit-tenggelam saat ganti mode */}
+      <div className="sky-object sky-sun right-[10%] top-[10%]">
+        <div className="sun-glow relative h-14 w-14 rounded-full bg-sun"></div>
+      </div>
+
+      {/* Bulan purnama terbit menggantikan matahari */}
+      <div className="sky-object sky-moon right-[10%] top-[10%]">
+        <div className="moon-glow relative h-14 w-14 rounded-full bg-[#f5f0d8]">
+          <div className="absolute left-2 top-3 h-3 w-3 rounded-full bg-[#d8d2b0]" />
+          <div className="absolute right-2 top-8 h-2 w-2 rounded-full bg-[#d8d2b0]" />
+          <div className="absolute left-4 top-10 h-2 w-2 rounded-full bg-[#d8d2b0]" />
+        </div>
+      </div>
+
       {/* Clouds */}
       <Cloud top="15%" scale="scale-150" durasi="80s" delay="0s" />
       <Cloud top="30%" scale="scale-125" durasi="110s" delay="-40s" />
 
       {/* Ocean */}
-      <div className="absolute inset-x-0 top-[62%] bottom-[22%] bg-[#22a2eb]">
-        <div className="absolute top-0 inset-x-0 h-1 bg-[#4bc0f8]" />
-        <div className="absolute top-1 inset-x-0 h-1 bg-[#37b1f3]" />
+      <div className="absolute inset-x-0 top-[62%] bottom-[22%] bg-[#22a2eb] dark:bg-[#0a2a5e]">
+        <div className="absolute top-0 inset-x-0 h-1 bg-[#4bc0f8] dark:bg-[#1e5ba8]" />
+        <div className="absolute top-1 inset-x-0 h-1 bg-[#37b1f3] dark:bg-[#164a8f]" />
         
         {/* Waves */}
-        <div className="absolute top-[20%] left-[10%] h-1 w-16 bg-[#4bc0f8]" />
-        <div className="absolute top-[40%] left-[30%] h-1 w-24 bg-[#4bc0f8]" />
-        <div className="absolute top-[60%] left-[60%] h-1 w-12 bg-[#4bc0f8]" />
-        <div className="absolute top-[80%] left-[20%] h-1 w-32 bg-[#4bc0f8]" />
+        <div className="absolute top-[20%] left-[10%] h-1 w-16 bg-[#4bc0f8] dark:bg-[#2a6fb8]" />
+        <div className="absolute top-[40%] left-[30%] h-1 w-24 bg-[#4bc0f8] dark:bg-[#2a6fb8]" />
+        <div className="absolute top-[60%] left-[60%] h-1 w-12 bg-[#4bc0f8] dark:bg-[#2a6fb8]" />
+        <div className="absolute top-[80%] left-[20%] h-1 w-32 bg-[#4bc0f8] dark:bg-[#2a6fb8]" />
         {/* Ships */}
         <PixelShip top="-4%" scale="scale-50 opacity-70" durasi="120s" delay="-20s" direction="left" />
         <PixelShip top="4%" scale="scale-75 opacity-90" durasi="95s" delay="-50s" direction="right" />
@@ -22,32 +67,32 @@ export default function PixelBeachBackground() {
       </div>
 
       {/* Sand */}
-      <div className="absolute inset-x-0 bottom-0 h-[22%] bg-[#f5d5a2]">
-        <div className="absolute top-0 inset-x-0 h-1 bg-[#ebd0a3]" />
+      <div className="absolute inset-x-0 bottom-0 h-[22%] bg-[#f5d5a2] dark:bg-[#2e2a44]">
+        <div className="absolute top-0 inset-x-0 h-1 bg-[#ebd0a3] dark:bg-[#3a3556]" />
         
         {/* Pixel Dunes (with dark edge) */}
-        <div className="absolute top-[-4px] left-[2%] h-[4px] w-[20%] bg-[#ebd0a3]" />
-        <div className="absolute top-[-2px] left-[2%] h-[4px] w-[20%] bg-[#f5d5a2]" />
-        <div className="absolute top-[-8px] left-[6%] h-[8px] w-[12%] bg-[#ebd0a3]" />
-        <div className="absolute top-[-6px] left-[6%] h-[8px] w-[12%] bg-[#f5d5a2]" />
+        <div className="absolute top-[-4px] left-[2%] h-[4px] w-[20%] bg-[#ebd0a3] dark:bg-[#3a3556]" />
+        <div className="absolute top-[-2px] left-[2%] h-[4px] w-[20%] bg-[#f5d5a2] dark:bg-[#2e2a44]" />
+        <div className="absolute top-[-8px] left-[6%] h-[8px] w-[12%] bg-[#ebd0a3] dark:bg-[#3a3556]" />
+        <div className="absolute top-[-6px] left-[6%] h-[8px] w-[12%] bg-[#f5d5a2] dark:bg-[#2e2a44]" />
         
-        <div className="absolute top-[-6px] right-[5%] h-[6px] w-[25%] bg-[#ebd0a3]" />
-        <div className="absolute top-[-4px] right-[5%] h-[6px] w-[25%] bg-[#f5d5a2]" />
-        <div className="absolute top-[-12px] right-[10%] h-[12px] w-[15%] bg-[#ebd0a3]" />
-        <div className="absolute top-[-10px] right-[10%] h-[12px] w-[15%] bg-[#f5d5a2]" />
+        <div className="absolute top-[-6px] right-[5%] h-[6px] w-[25%] bg-[#ebd0a3] dark:bg-[#3a3556]" />
+        <div className="absolute top-[-4px] right-[5%] h-[6px] w-[25%] bg-[#f5d5a2] dark:bg-[#2e2a44]" />
+        <div className="absolute top-[-12px] right-[10%] h-[12px] w-[15%] bg-[#ebd0a3] dark:bg-[#3a3556]" />
+        <div className="absolute top-[-10px] right-[10%] h-[12px] w-[15%] bg-[#f5d5a2] dark:bg-[#2e2a44]" />
         
         {/* Wave Foam */}
-        <div className="absolute top-[-2px] inset-x-0 h-[2px] bg-white opacity-60" />
-        <div className="absolute top-[-6px] left-[25%] h-[2px] w-8 bg-white opacity-60" />
-        <div className="absolute top-[-4px] right-[35%] h-[2px] w-12 bg-white opacity-60" />
+        <div className="absolute top-[-2px] inset-x-0 h-[2px] bg-white opacity-60 dark:bg-[#8a86a8] dark:opacity-40" />
+        <div className="absolute top-[-6px] left-[25%] h-[2px] w-8 bg-white opacity-60 dark:bg-[#8a86a8] dark:opacity-40" />
+        <div className="absolute top-[-4px] right-[35%] h-[2px] w-12 bg-white opacity-60 dark:bg-[#8a86a8] dark:opacity-40" />
         
         {/* Sand dots */}
-        <div className="absolute top-[20%] left-[15%] h-1 w-1 bg-[#e0b87c]" />
-        <div className="absolute top-[50%] left-[5%] h-1 w-1 bg-[#e0b87c]" />
-        <div className="absolute top-[30%] left-[45%] h-1 w-1 bg-[#e0b87c]" />
-        <div className="absolute top-[60%] left-[35%] h-1 w-1 bg-[#e0b87c]" />
-        <div className="absolute top-[40%] left-[75%] h-1 w-1 bg-[#e0b87c]" />
-        <div className="absolute top-[70%] left-[85%] h-1 w-1 bg-[#e0b87c]" />
+        <div className="absolute top-[20%] left-[15%] h-1 w-1 bg-[#e0b87c] dark:bg-[#4a4368]" />
+        <div className="absolute top-[50%] left-[5%] h-1 w-1 bg-[#e0b87c] dark:bg-[#4a4368]" />
+        <div className="absolute top-[30%] left-[45%] h-1 w-1 bg-[#e0b87c] dark:bg-[#4a4368]" />
+        <div className="absolute top-[60%] left-[35%] h-1 w-1 bg-[#e0b87c] dark:bg-[#4a4368]" />
+        <div className="absolute top-[40%] left-[75%] h-1 w-1 bg-[#e0b87c] dark:bg-[#4a4368]" />
+        <div className="absolute top-[70%] left-[85%] h-1 w-1 bg-[#e0b87c] dark:bg-[#4a4368]" />
       </div>
 
       {/* Palm Trees */}
@@ -67,10 +112,10 @@ function Cloud({ top, scale, durasi, delay }: { top: string, scale: string, dura
       style={{ top, animationDuration: durasi, animationDelay: delay }}
     >
       <div className={`relative ${scale}`}>
-        <div className="absolute bottom-0 left-0 h-4 w-24 bg-white" />
-        <div className="absolute bottom-4 left-2 h-4 w-20 bg-white" />
-        <div className="absolute bottom-8 left-6 h-4 w-12 bg-white" />
-        <div className="absolute bottom-12 left-8 h-4 w-8 bg-white" />
+        <div className="absolute bottom-0 left-0 h-4 w-24 bg-white dark:bg-[#46527a]" />
+        <div className="absolute bottom-4 left-2 h-4 w-20 bg-white dark:bg-[#46527a]" />
+        <div className="absolute bottom-8 left-6 h-4 w-12 bg-white dark:bg-[#46527a]" />
+        <div className="absolute bottom-12 left-8 h-4 w-8 bg-white dark:bg-[#46527a]" />
       </div>
     </div>
   );
@@ -88,23 +133,23 @@ function PixelShip({ top, scale = "scale-100", durasi, delay, direction = "left"
       <div className={`relative ship-bob w-32 h-24 origin-bottom ${scale}`}>
         <div className={`absolute inset-0 ${isRight ? '-scale-x-100' : ''}`}>
           {/* Tiang */}
-          <div className="absolute bottom-4 left-12 h-16 w-[4px] bg-[#4a2f1d]" />
+          <div className="absolute bottom-4 left-12 h-16 w-[4px] bg-[#4a2f1d] dark:bg-[#241409]" />
           
           {/* Layar Kiri */}
-          <div className="absolute bottom-6 left-6 h-2 w-6 bg-white" />
-          <div className="absolute bottom-8 left-8 h-2 w-4 bg-white" />
-          <div className="absolute bottom-10 left-10 h-2 w-2 bg-white" />
-          <div className="absolute bottom-12 left-10 h-6 w-2 bg-white" />
+          <div className="absolute bottom-6 left-6 h-2 w-6 bg-white dark:bg-[#9aa3bd]" />
+          <div className="absolute bottom-8 left-8 h-2 w-4 bg-white dark:bg-[#9aa3bd]" />
+          <div className="absolute bottom-10 left-10 h-2 w-2 bg-white dark:bg-[#9aa3bd]" />
+          <div className="absolute bottom-12 left-10 h-6 w-2 bg-white dark:bg-[#9aa3bd]" />
 
           {/* Layar Kanan */}
-          <div className="absolute bottom-6 left-14 h-10 w-8 bg-white" />
-          <div className="absolute bottom-8 left-14 h-8 w-10 bg-white" />
-          <div className="absolute bottom-12 left-14 h-4 w-6 bg-white" />
-          <div className="absolute bottom-16 left-14 h-2 w-4 bg-white" />
+          <div className="absolute bottom-6 left-14 h-10 w-8 bg-white dark:bg-[#9aa3bd]" />
+          <div className="absolute bottom-8 left-14 h-8 w-10 bg-white dark:bg-[#9aa3bd]" />
+          <div className="absolute bottom-12 left-14 h-4 w-6 bg-white dark:bg-[#9aa3bd]" />
+          <div className="absolute bottom-16 left-14 h-2 w-4 bg-white dark:bg-[#9aa3bd]" />
 
           {/* Badan Kapal */}
-          <div className="absolute bottom-0 left-0 h-[8px] w-28 bg-[#8d5524]" />
-          <div className="absolute bottom-[8px] left-2 h-[8px] w-24 bg-[#a66a33]" />
+          <div className="absolute bottom-0 left-0 h-[8px] w-28 bg-[#8d5524] dark:bg-[#3d2612]" />
+          <div className="absolute bottom-[8px] left-2 h-[8px] w-24 bg-[#a66a33] dark:bg-[#4c3018]" />
         </div>
       </div>
     </div>
@@ -217,7 +262,7 @@ function PixelPalmTree({ className, lean }: { className: string; lean: 'left' | 
   }));
 
   return (
-    <div className={`absolute ${className} palm-sway`}>
+    <div className={`absolute ${className} palm-sway dark:brightness-[0.45] dark:saturate-[0.55]`}>
       <div className={lean === 'left' ? '-scale-x-100' : undefined}>
         <svg width={150} height={180} viewBox="0 0 150 180" fill="none" shapeRendering="crispEdges">
           <defs>
@@ -250,8 +295,8 @@ function PixelPalmTree({ className, lean }: { className: string; lean: 'left' | 
           ))}
 
           {/* Base sand mound to embed the tree */}
-          <ellipse cx={70} cy={178} rx={22} ry={6} fill="#ebd0a3" />
-          <ellipse cx={70} cy={176} rx={16} ry={4} fill="#f5d5a2" />
+          <ellipse className="dark:opacity-0" cx={70} cy={178} rx={22} ry={6} fill="#ebd0a3" />
+          <ellipse className="dark:opacity-0" cx={70} cy={176} rx={16} ry={4} fill="#f5d5a2" />
 
           <ellipse cx={crown[0]} cy={crown[1] + 8} rx={30} ry={14} fill="#1f5e21" opacity={0.25} />
 

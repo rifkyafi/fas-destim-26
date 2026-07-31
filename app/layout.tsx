@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, VT323 } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 // Font pixel untuk judul (Press Start 2P)
@@ -32,7 +33,24 @@ export default function RootLayout({
       lang="id"
       className={`${pixelFont.variable} ${retroFont.variable} scroll-smooth`}
     >
-      <body className="font-retro">{children}</body>
+      <body className="font-retro">
+        <Script id="fas-theme-init" strategy="beforeInteractive">
+          {`(function () {
+            try {
+              var simpan = localStorage.getItem("fas-theme");
+              var malam;
+              if (simpan === "day" || simpan === "night") {
+                malam = simpan === "night";
+              } else {
+                var jam = new Date().getHours();
+                malam = !(jam >= 6 && jam < 18);
+              }
+              document.documentElement.classList.toggle("dark", malam);
+            } catch (e) {}
+          })();`}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }

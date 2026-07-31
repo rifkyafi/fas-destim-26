@@ -38,12 +38,12 @@ function KotakWaktu({ label, nilai }: KotakWaktuProps) {
 
   return (
     <div className="flex flex-col items-center gap-1 sm:gap-2">
-      <div className="pixel-panel-sm bg-ink px-3 py-2 sm:px-4 sm:py-3">
-        <span className="font-pixel text-lg text-cream sm:text-2xl">
+      <div className="pixel-panel-sm bg-[#16324a] px-3 py-2 sm:px-4 sm:py-3">
+        <span className="font-pixel text-lg text-[#fff7e0] sm:text-2xl">
           {teks}
         </span>
       </div>
-      <span className="font-pixel text-[8px] text-cream pixel-text-sm sm:text-[10px]">
+      <span className="font-pixel text-[8px] text-[#fff7e0] pixel-text-sm sm:text-[10px]">
         {label}
       </span>
     </div>

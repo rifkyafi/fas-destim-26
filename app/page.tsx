@@ -26,7 +26,7 @@ export default function HomePage() {
         </p>
 
         <div className="fade-up mt-10">
-          <p className="mb-4 font-pixel text-[10px] text-cream pixel-text-sm">
+          <p className="mb-4 font-pixel text-[10px] text-sun pixel-text-sm">
             HARI H: 27 SEPTEMBER 2026
           </p>
           <CountdownTimer />

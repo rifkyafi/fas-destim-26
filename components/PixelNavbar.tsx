@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export default function PixelNavbar() {
   return (
@@ -21,6 +22,7 @@ export default function PixelNavbar() {
           >
             Informasi Lomba
           </Link>
+          <ThemeToggle />
         </div>
       </nav>
     </header>

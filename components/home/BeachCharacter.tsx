@@ -186,7 +186,7 @@ export default function BeachCharacter({
       >
         {showHai && (
           <div className="absolute -top-16 left-1/2 -translate-x-1/2 flex flex-col items-center z-50 pointer-events-none">
-            <div className="bg-white border-2 border-ink px-2 py-1 text-[8px] sm:text-[10px] font-pixel text-ink">
+            <div className="bg-cream border-2 border-ink px-2 py-1 text-[8px] sm:text-[10px] font-pixel text-ink">
               Hai!
             </div>
             <div className="h-2 w-2 bg-ink -mt-[2px] ml-1" />
