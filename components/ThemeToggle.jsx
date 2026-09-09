@@ -4,25 +4,23 @@ import { useSyncExternalStore } from "react";
 
 const KUNCI_TEMA = "fas-theme";
 
-type Mode = "day" | "night";
-
 // Siang: 06.00-17.59 waktu lokal pengguna. Sisanya malam.
-function modeDariWaktuLokal(): Mode {
+function modeDariWaktuLokal() {
   const jam = new Date().getHours();
   return jam >= 6 && jam < 18 ? "day" : "night";
 }
 
-function terapkanMode(mode: Mode) {
+function terapkanMode(mode) {
   document.documentElement.classList.toggle("dark", mode === "night");
 }
 
-function ambilMode(): Mode {
+function ambilMode() {
   return document.documentElement.classList.contains("dark") ? "night" : "day";
 }
 
 // Langganan perubahan mode. Callback hanya memberitahu React untuk
 // membaca ulang snapshot; React hanya re-render jika nilainya berubah.
-function langgananMode(onBerubah: () => void) {
+function langgananMode(onBerubah) {
   function ikutiWaktuLokal() {
     // Kalau pengguna sudah memilih manual, waktu lokal tidak menang.
     if (localStorage.getItem(KUNCI_TEMA)) return;
@@ -71,10 +69,10 @@ function IkonBulan() {
 }
 
 export default function ThemeToggle() {
-  const mode = useSyncExternalStore(langgananMode, ambilMode, () => "day" as Mode);
+  const mode = useSyncExternalStore(langgananMode, ambilMode, () => "day");
 
   function gantiMode() {
-    const baru: Mode = mode === "day" ? "night" : "day";
+    const baru = mode === "day" ? "night" : "day";
     terapkanMode(baru);
     localStorage.setItem(KUNCI_TEMA, baru);
     window.dispatchEvent(new Event("fas-theme-change"));

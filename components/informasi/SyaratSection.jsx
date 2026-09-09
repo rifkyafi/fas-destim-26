@@ -1,7 +1,7 @@
 import { SYARAT_UMUM } from "@/data/syarat";
 import SectionHeader from "./SectionHeader";
 
-function renderSyarat(syarat: (typeof SYARAT_UMUM)[number], nomorUrut: number) {
+function renderSyarat(syarat, nomorUrut) {
   return (
     <li
       key={syarat.judul}

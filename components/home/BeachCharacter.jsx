@@ -2,30 +2,22 @@
 
 import { useState } from "react";
 
-type BeachCharacterProps = {
-  jenis: "laki-laki" | "perempuan";
-  durasiPerjalanan: string;
-  delay: string;
-  posisiBawah: string;
-  variant?: 1 | 2 | 3;
-};
-
 const pixelSize = 5;
 
-const boyColorsBase: Record<string, string> = {
+const boyColorsBase = {
   k: "#16324a", // peci/shoes
   s: "#d49a5b", // skin
   e: "#000000", // eye
 };
 
-const girlColorsBase: Record<string, string> = {
+const girlColorsBase = {
   s: "#d49a5b", // skin
   k: "#16324a", // shoes
   e: "#000000", // eye
 };
 
-const generateShadow = (grid: string[], colors: Record<string, string>) => {
-  const shadows: string[] = [];
+const generateShadow = (grid, colors) => {
+  const shadows = [];
   for (let y = 0; y < grid.length; y++) {
     for (let x = 0; x < grid[y].length; x++) {
       const char = grid[y][x];
@@ -125,7 +117,7 @@ export default function BeachCharacter({
   delay,
   posisiBawah,
   variant = 1,
-}: BeachCharacterProps) {
+}) {
   const [showHai, setShowHai] = useState(false);
 
   const handleClick = () => {
@@ -175,13 +167,11 @@ export default function BeachCharacter({
           showHai ? "is-paused" : ""
         }`}
         onClick={handleClick}
-        style={
-          {
-            bottom: posisiBawah,
-            "--durasi-perjalanan": durasiPerjalanan,
-            "--delay-perjalanan": delay,
-          } as React.CSSProperties
-        }
+        style={{
+          bottom: posisiBawah,
+          "--durasi-perjalanan": durasiPerjalanan,
+          "--delay-perjalanan": delay,
+        }}
         aria-hidden="true"
       >
         {showHai && (

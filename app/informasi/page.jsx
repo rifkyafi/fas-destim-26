@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import PixelBeachBackground from "@/components/home/PixelBeachBackground";
 import PixelNavbar from "@/components/PixelNavbar";
@@ -7,7 +6,7 @@ import TimelineSection from "@/components/informasi/TimelineSection";
 import LombaSection from "@/components/informasi/LombaSection";
 import SyaratSection from "@/components/informasi/SyaratSection";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Informasi Lomba | Festival Anak Sholeh 2026",
   description:
     "Timeline, daftar lomba, serta syarat dan ketentuan Festival Anak Sholeh 2026.",

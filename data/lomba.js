@@ -1,12 +1,4 @@
-export type Lomba = {
-  id: string;
-  nama: string;
-  kategoriUsia: string;
-  deskripsi: string;
-  syarat: string[];
-};
-
-export const DAFTAR_LOMBA: Lomba[] = [
+export const DAFTAR_LOMBA = [
   {
     id: "hafalan-surat-pendek",
     nama: "Hafalan Surat Pendek",

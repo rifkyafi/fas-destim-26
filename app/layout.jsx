@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Press_Start_2P, VT323 } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -17,21 +16,18 @@ const retroFont = VT323({
   variable: "--font-vt323",
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Festival Anak Sholeh 2026",
   description:
     "Festival Anak Sholeh 2026: lomba hafalan, adzan, cerita islami, mewarnai, kaligrafi, dan cerdas cermat dengan tema pantai 8-bit.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   return (
     <html
       lang="id"
       className={`${pixelFont.variable} ${retroFont.variable} scroll-smooth`}
+      suppressHydrationWarning
     >
       <body className="font-retro">
         <Script id="fas-theme-init" strategy="beforeInteractive">

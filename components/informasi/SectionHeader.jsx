@@ -1,14 +1,4 @@
-type SectionHeaderProps = {
-  nomor: string;
-  judul: string;
-  deskripsi: string;
-};
-
-export default function SectionHeader({
-  nomor,
-  judul,
-  deskripsi,
-}: SectionHeaderProps) {
+export default function SectionHeader({ nomor, judul, deskripsi }) {
   return (
     <div className="mb-8 text-center">
       <p className="font-pixel text-[10px] text-sky-deep">{nomor}</p>

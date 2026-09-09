@@ -1,7 +1,7 @@
 import { TIMELINE_KEGIATAN } from "@/data/timeline";
 import SectionHeader from "./SectionHeader";
 
-function renderTahapan(tahapan: (typeof TIMELINE_KEGIATAN)[number]) {
+function renderTahapan(tahapan) {
   return (
     <li key={tahapan.nama} className="relative pl-10 sm:pl-14">
       <div className="absolute left-[14px] top-2 h-4 w-4 bg-sun shadow-[3px_3px_0_0_var(--color-ink)] sm:left-[18px]" />

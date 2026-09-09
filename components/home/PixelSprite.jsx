@@ -1,14 +1,4 @@
-type PixelSpriteProps = {
-  baris: string[];
-  warna: Record<string, string>;
-  ukuranPiksel?: number;
-};
-
-export default function PixelSprite({
-  baris,
-  warna,
-  ukuranPiksel = 4,
-}: PixelSpriteProps) {
+export default function PixelSprite({ baris, warna, ukuranPiksel = 4 }) {
   return (
     <div className="inline-block">
       {baris.map(function renderBaris(barisPixel, indeksBaris) {

@@ -1,9 +1,4 @@
-export type Syarat = {
-  judul: string;
-  detail: string;
-};
-
-export const SYARAT_UMUM: Syarat[] = [
+export const SYARAT_UMUM = [
   {
     judul: "Usia Peserta",
     detail:

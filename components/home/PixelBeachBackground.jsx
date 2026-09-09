@@ -1,4 +1,4 @@
-const BINTANG: { atas: string; kiri: string; delay: string; durasi: string }[] = [
+const BINTANG = [
   { atas: "6%", kiri: "12%", delay: "0s", durasi: "2.4s" },
   { atas: "14%", kiri: "30%", delay: "0.6s", durasi: "3.2s" },
   { atas: "4%", kiri: "45%", delay: "1.1s", durasi: "2.8s" },
@@ -105,7 +105,7 @@ export default function PixelBeachBackground() {
   );
 }
 
-function Cloud({ top, scale, durasi, delay }: { top: string, scale: string, durasi: string, delay: string }) {
+function Cloud({ top, scale, durasi, delay }) {
   return (
     <div 
       className="absolute inset-x-0 cloud-drift opacity-90"
@@ -121,7 +121,7 @@ function Cloud({ top, scale, durasi, delay }: { top: string, scale: string, dura
   );
 }
 
-function PixelShip({ top, scale = "scale-100", durasi, delay, direction = "left" }: { top: string, scale?: string, durasi: string, delay: string, direction?: "left" | "right" }) {
+function PixelShip({ top, scale = "scale-100", durasi, delay, direction = "left" }) {
   const isRight = direction === "right";
   const sailClass = isRight ? "ship-sail-reverse" : "ship-sail";
 
@@ -156,13 +156,11 @@ function PixelShip({ top, scale = "scale-100", durasi, delay, direction = "left"
   );
 }
 
-type Pt = readonly [number, number];
-
-const q = (n: number) => Math.round(n / 2) * 2;
+const q = (n) => Math.round(n / 2) * 2;
 
 const APEX_Y = 44;
 
-const TRUNK_EDGES: Record<'straight' | 'right', { left: Pt[]; right: Pt[] }> = {
+const TRUNK_EDGES = {
   straight: {
     left: [[64, 180], [64, 130], [66, 80], [66, APEX_Y]],
     right: [[76, 180], [76, 130], [74, 80], [74, APEX_Y]],
@@ -173,7 +171,7 @@ const TRUNK_EDGES: Record<'straight' | 'right', { left: Pt[]; right: Pt[] }> = {
   },
 };
 
-const FRONDS_STRAIGHT: [number, number, number][] = [
+const FRONDS_STRAIGHT = [
   [-160, 56, 30],
   [-138, 60, 56],
   [-112, 54, 66],
@@ -183,7 +181,7 @@ const FRONDS_STRAIGHT: [number, number, number][] = [
   [-20, 52, 26],
 ];
 
-const FRONDS_RIGHT: [number, number, number][] = [
+const FRONDS_RIGHT = [
   [-160, 56, 30],
   [-138, 60, 56],
   [-112, 54, 66],
@@ -194,7 +192,7 @@ const FRONDS_RIGHT: [number, number, number][] = [
   [2, 46, 22],
 ];
 
-function cubicPoint(p0: Pt, c1: Pt, c2: Pt, p1: Pt, t: number): Pt {
+function cubicPoint(p0, c1, c2, p1, t) {
   const u = 1 - t;
   return [
     q(u * u * u * p0[0] + 3 * u * u * t * c1[0] + 3 * u * t * t * c2[0] + t * t * t * p1[0]),
@@ -202,32 +200,32 @@ function cubicPoint(p0: Pt, c1: Pt, c2: Pt, p1: Pt, t: number): Pt {
   ];
 }
 
-function frondParts(crown: Pt, angleDeg: number, len: number, droop: number, wBase: number) {
+function frondParts(crown, angleDeg, len, droop, wBase) {
   const rad = (angleDeg * Math.PI) / 180;
-  const dir: Pt = [Math.cos(rad), Math.sin(rad)];
-  let perp: Pt = [-dir[1], dir[0]];
+  const dir = [Math.cos(rad), Math.sin(rad)];
+  let perp = [-dir[1], dir[0]];
   if (perp[1] < 0) perp = [-perp[0], -perp[1]];
 
-  const tip: Pt = [q(crown[0] + dir[0] * len), q(crown[1] + dir[1] * len + droop)];
-  const c1: Pt = [q(crown[0] + (dir[0] * len) / 3), q(crown[1] + (dir[1] * len) / 3 + droop / 9)];
-  const c2: Pt = [q(crown[0] + (dir[0] * len * 2) / 3), q(crown[1] + (dir[1] * len * 2) / 3 + (droop * 4) / 9)];
-  const w = (t: number) => wBase * (1 - 0.85 * t);
+  const tip = [q(crown[0] + dir[0] * len), q(crown[1] + dir[1] * len + droop)];
+  const c1 = [q(crown[0] + (dir[0] * len) / 3), q(crown[1] + (dir[1] * len) / 3 + droop / 9)];
+  const c2 = [q(crown[0] + (dir[0] * len * 2) / 3), q(crown[1] + (dir[1] * len * 2) / 3 + (droop * 4) / 9)];
+  const w = (t) => wBase * (1 - 0.85 * t);
 
-  const o1L: Pt = [q(c1[0] + perp[0] * w(1 / 3) * 1.1), q(c1[1] + perp[1] * w(1 / 3) * 1.1)];
-  const o2L: Pt = [q(c2[0] + perp[0] * w(2 / 3) * 1.1), q(c2[1] + perp[1] * w(2 / 3) * 1.1)];
-  const o1U: Pt = [q(c1[0] - perp[0] * w(1 / 3) * 0.9), q(c1[1] - perp[1] * w(1 / 3) * 0.9)];
-  const o2U: Pt = [q(c2[0] - perp[0] * w(2 / 3) * 0.9), q(c2[1] - perp[1] * w(2 / 3) * 0.9)];
+  const o1L = [q(c1[0] + perp[0] * w(1 / 3) * 1.1), q(c1[1] + perp[1] * w(1 / 3) * 1.1)];
+  const o2L = [q(c2[0] + perp[0] * w(2 / 3) * 1.1), q(c2[1] + perp[1] * w(2 / 3) * 1.1)];
+  const o1U = [q(c1[0] - perp[0] * w(1 / 3) * 0.9), q(c1[1] - perp[1] * w(1 / 3) * 0.9)];
+  const o2U = [q(c2[0] - perp[0] * w(2 / 3) * 0.9), q(c2[1] - perp[1] * w(2 / 3) * 0.9)];
 
   const blade = `M ${crown[0]} ${crown[1]} C ${o1L[0]} ${o1L[1]} ${o2L[0]} ${o2L[1]} ${tip[0]} ${tip[1]} C ${o2U[0]} ${o2U[1]} ${o1U[0]} ${o1U[1]} ${crown[0]} ${crown[1]} Z`;
   const spine = `M ${crown[0]} ${crown[1]} C ${c1[0]} ${c1[1]} ${c2[0]} ${c2[1]} ${tip[0]} ${tip[1]}`;
 
-  const leaflets: string[] = [];
+  const leaflets = [];
   for (const t of [0.5, 0.67, 0.84, 0.97]) {
     const p = cubicPoint(crown, c1, c2, tip, t);
     const wt = w(t);
-    const base: Pt = [q(p[0] + perp[0] * wt), q(p[1] + perp[1] * wt)];
+    const base = [q(p[0] + perp[0] * wt), q(p[1] + perp[1] * wt)];
     const llen = 8 * (1.4 - t);
-    const ld: Pt = [perp[0] * 0.7 + dir[0] * 0.55, perp[1] * 0.7 + dir[1] * 0.55 + 0.35];
+    const ld = [perp[0] * 0.7 + dir[0] * 0.55, perp[1] * 0.7 + dir[1] * 0.55 + 0.35];
     const ll = Math.hypot(ld[0], ld[1]);
     leaflets.push(
       `M ${base[0]} ${base[1]} L ${q(base[0] + (ld[0] / ll) * llen)} ${q(base[1] + (ld[1] / ll) * llen)}`
@@ -237,17 +235,17 @@ function frondParts(crown: Pt, angleDeg: number, len: number, droop: number, wBa
   return { blade, spine, leaflets, tip };
 }
 
-function PixelPalmTree({ className, lean }: { className: string; lean: 'left' | 'right' | 'straight' }) {
+function PixelPalmTree({ className, lean }) {
   const key = lean === 'straight' ? 'straight' : 'right';
   const apexX = key === 'straight' ? 70 : 92;
-  const crown: Pt = [apexX, APEX_Y + 2];
+  const crown = [apexX, APEX_Y + 2];
   const edges = TRUNK_EDGES[key];
   const { left, right } = edges;
   const fronds = key === 'straight' ? FRONDS_STRAIGHT : FRONDS_RIGHT;
 
   const trunkPath = `M ${left[0][0]} ${left[0][1]} C ${left[1][0]} ${left[1][1]} ${left[2][0]} ${left[2][1]} ${left[3][0]} ${left[3][1]} C ${right[2][0]} ${right[2][1]} ${right[1][0]} ${right[1][1]} ${right[0][0]} ${right[0][1]} Z`;
 
-  const rings: string[] = [];
+  const rings = [];
   for (let t = 0.08; t <= 0.85; t += 0.11) {
     const L = cubicPoint(left[0], left[1], left[2], left[3], t);
     const R = cubicPoint(right[0], right[1], right[2], right[3], t);

@@ -1,8 +1,7 @@
-import type { Lomba } from "@/data/lomba";
 import { DAFTAR_LOMBA } from "@/data/lomba";
 import SectionHeader from "./SectionHeader";
 
-function renderKartuLomba(lomba: Lomba) {
+function renderKartuLomba(lomba) {
   return (
     <article
       key={lomba.id}

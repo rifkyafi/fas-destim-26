@@ -1,10 +1,4 @@
-export type TahapanKegiatan = {
-  nama: string;
-  tanggal: string;
-  deskripsi: string;
-};
-
-export const TIMELINE_KEGIATAN: TahapanKegiatan[] = [
+export const TIMELINE_KEGIATAN = [
   {
     nama: "Pendaftaran Dibuka",
     tanggal: "3 Agustus 2026",

@@ -2,17 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-type SisaWaktu = {
-  hari: number;
-  jam: number;
-  menit: number;
-  detik: number;
-};
-
 // Tanggal dan jam acara dimulai (waktu Indonesia Barat)
 const WAKTU_ACARA = new Date("2026-09-27T08:00:00+07:00");
 
-function hitungSisaWaktu(sekarang: number): SisaWaktu {
+function hitungSisaWaktu(sekarang) {
   const selisihMilidetik = Math.max(0, WAKTU_ACARA.getTime() - sekarang);
   const selisihDetik = Math.floor(selisihMilidetik / 1000);
 
@@ -24,16 +17,11 @@ function hitungSisaWaktu(sekarang: number): SisaWaktu {
   };
 }
 
-function tampilkanDuaDigit(angka: number): string {
+function tampilkanDuaDigit(angka) {
   return String(angka).padStart(2, "0");
 }
 
-type KotakWaktuProps = {
-  label: string;
-  nilai: number | null;
-};
-
-function KotakWaktu({ label, nilai }: KotakWaktuProps) {
+function KotakWaktu({ label, nilai }) {
   const teks = nilai === null ? "--" : tampilkanDuaDigit(nilai);
 
   return (
@@ -51,7 +39,7 @@ function KotakWaktu({ label, nilai }: KotakWaktuProps) {
 }
 
 export default function CountdownTimer() {
-  const [sisaWaktu, setSisaWaktu] = useState<SisaWaktu | null>(null);
+  const [sisaWaktu, setSisaWaktu] = useState(null);
 
   useEffect(
     function pasangTimer() {
