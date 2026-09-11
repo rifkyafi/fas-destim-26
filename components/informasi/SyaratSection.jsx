@@ -24,7 +24,6 @@ export default function SyaratSection() {
   return (
     <section className="px-6 py-16">
       <SectionHeader
-        nomor="LANGKAH 3"
         judul="Syarat & Ketentuan"
         deskripsi="Syarat umum berlaku untuk semua lomba. Syarat khusus setiap lomba sudah tercantum di kartu lomba masing-masing."
       />

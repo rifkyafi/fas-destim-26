@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
       className={`${pixelFont.variable} ${retroFont.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      <body className="font-retro">
+      <body className="font-retro"  cz-shortcut-listen="true">
         <Script id="fas-theme-init" strategy="beforeInteractive">
           {`(function () {
             try {

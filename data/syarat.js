@@ -20,8 +20,8 @@ export const SYARAT_UMUM = [
       "Hadir 30 menit sebelum lomba dimulai dan melakukan daftar ulang di meja panitia.",
   },
   {
-    judul: "Sikap",
+    judul: "29 Karakter Luhur",
     detail:
-      "Menjaga kerukunan, sportifitas, dan mematuhi seluruh aturan dari juri serta panitia.",
+      "Menjunjung tinggi nilai-nilai 29 karakter luhur selama acara berlangsung",
   },
 ];

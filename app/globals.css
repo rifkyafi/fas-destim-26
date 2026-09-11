@@ -1,9 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Titan+One&family=Fredoka:wght@700;900&display=swap');
 @import "tailwindcss";
+
+
+@font-face {
+  font-family: 'Bryndan White';
+  src: url('/fonts/BryndanWrite.woff2') format('woff2'),
+       url('/fonts/BryndanWrite.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* =====================
    Tema: Warna pantai & font pixel
    Semua warna di bawah bisa dipakai lewat class Tailwind,
-   contoh: bg-ocean, text-sand, font-pixel, font-retro
+   contoh: bg-ocean, text-sand, font-pixel, font-retro, font-bryndan
    ===================== */
 @theme {
   --color-sky: #74caf5;
@@ -27,6 +38,11 @@
 
   --font-pixel: var(--font-press-start);
   --font-retro: var(--font-vt323);
+  --font-bryndan: 'Bryndan White', cursive, sans-serif;
+}
+
+.font-bryndan {
+  font-family: 'Bryndan White', cursive, sans-serif;
 }
 
 /* Mode malam: pilih lewat class .dark di <html> */
@@ -213,19 +229,21 @@ html.dark .sky-moon {
   opacity: 1;
 }
 
-/* Bintang pixel berkelap-kelip di malam hari */
+/* Bintang berkelap-kelip malam hari (smooth) */
 @keyframes star-twinkle {
   0%,
   100% {
-    opacity: 0.25;
+    opacity: 0.2;
+    transform: scale(1);
   }
   50% {
     opacity: 1;
+    transform: scale(1.4);
   }
 }
 
 .star-twinkle {
-  animation: star-twinkle 2.4s steps(2, end) infinite;
+  animation: star-twinkle 2.4s ease-in-out infinite;
 }
 
 /* Awan bergerak perlahan dari kiri ke kanan */
@@ -284,32 +302,39 @@ html.dark .sky-moon {
   animation: ship-bob 4s ease-in-out infinite;
 }
 
-/* Gelombang laut bergeser kotak-kotak seperti game 8-bit */
-@keyframes wave-scroll {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: -48px;
-  }
+/* ── Ombak SVG smooth 2D (ringan, GPU-accelerated) ── */
+@keyframes wave-slide-1 {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes wave-slide-2 {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+@keyframes wave-foam-drift-1 {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes wave-foam-drift-2 {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
-.wave-band {
-  background-image: repeating-linear-gradient(
-    90deg,
-    var(--color-ocean-light) 0 12px,
-    var(--color-ocean) 12px 24px
-  );
-  animation: wave-scroll 2.5s steps(12) infinite;
+.wave-svg-1 {
+  will-change: transform;
+  animation: wave-slide-1 8s linear infinite;
 }
-
-.wave-band-2 {
-  background-image: repeating-linear-gradient(
-    90deg,
-    var(--color-ocean) 0 12px,
-    var(--color-ocean-deep) 12px 24px
-  );
-  animation: wave-scroll 3.5s steps(12) infinite;
+.wave-svg-2 {
+  will-change: transform;
+  animation: wave-slide-2 12s linear infinite;
+}
+.wave-foam-1 {
+  will-change: transform;
+  animation: wave-foam-drift-1 10s linear infinite;
+}
+.wave-foam-2 {
+  will-change: transform;
+  animation: wave-foam-drift-2 14s linear infinite;
 }
 
 /* Pohon kelapa bergoyang pelan */
@@ -349,7 +374,7 @@ html.dark .sky-moon {
     );
 }
 
-/* Buih ombak putih putus-putus di tepi pantai */
+/* Buih ombak putih di tepi pantai (smooth) */
 @keyframes foam-scroll {
   from {
     background-position-x: 0;
@@ -362,10 +387,11 @@ html.dark .sky-moon {
 .sand-foam {
   background-image: repeating-linear-gradient(
     90deg,
-    #ffffff 0 10px,
-    transparent 10px 16px
+    rgba(255,255,255,0.7) 0 10px,
+    transparent 10px 20px
   );
-  animation: foam-scroll 3s steps(10) infinite;
+  animation: foam-scroll 4s linear infinite;
+  border-radius: 9999px;
 }
 
 /* =====================
@@ -407,40 +433,38 @@ html.dark .sky-moon {
   animation-delay: calc(var(--delay-perjalanan, 0s) * 2);
 }
 
-/* Badan memantul naik turun saat melangkah */
+/* Badan memantul lembut saat melangkah (smooth 2D) */
 @keyframes body-bob {
   0%,
   100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
   }
 }
 
 .character-body {
   transform-origin: center bottom;
-  animation: body-bob 0.45s steps(2, end) infinite;
+  animation: body-bob 0.5s ease-in-out infinite;
 }
 
-/* Kaki dan tangan berayun bergantian */
+/* Kaki dan tangan berayun mulus */
 @keyframes limb-swing {
   0% {
-    transform: rotate(-18deg);
+    transform: rotate(-20deg);
   }
   100% {
-    transform: rotate(18deg);
+    transform: rotate(20deg);
   }
 }
 
 .limb-left {
-  transform-origin: top center;
-  animation: limb-swing 0.45s steps(2, end) infinite;
+  animation: limb-swing 0.5s ease-in-out infinite;
 }
 
 .limb-right {
-  transform-origin: top center;
-  animation: limb-swing 0.45s steps(2, end) infinite reverse;
+  animation: limb-swing 0.5s ease-in-out infinite reverse;
 }
 
 /* =====================
@@ -468,3 +492,29 @@ html.dark .sky-moon {
 .is-paused, .is-paused * {
   animation-play-state: paused !important;
 }
+
+/* Modal Popup Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.animate-scaleUp {
+  animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+

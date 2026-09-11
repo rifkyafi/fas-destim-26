@@ -4,6 +4,8 @@ import BeachCharacter from "@/components/home/BeachCharacter";
 import CountdownTimer from "@/components/home/CountdownTimer";
 import PixelNavbar from "@/components/PixelNavbar";
 import Footer from "@/components/Footer";
+import CeriaTitle from "@/components/CeriaTitle";
+import { HiMapPin } from "react-icons/hi2";
 
 export default function HomePage() {
   return (
@@ -11,24 +13,30 @@ export default function HomePage() {
       <PixelBeachBackground />
       <PixelNavbar />
 
-      <main className="relative flex min-h-screen flex-col items-center justify-center px-6 pb-40 pt-24 text-center">
-        <p className="fade-up font-pixel text-[10px] text-sky-deep sm:text-xs">
-          FESTIVAL ANAK SHOLEH 2026
+      <main className="relative flex min-h-screen flex-col items-center justify-center px-6 pb-40 pt-24 text-center mt-10 gap-6 z-20">
+        <p className="fade-up font-pixel text-[10px] sm:text-2xl font-bryndan">
+          Festival Anak Sholeh Desa Timur
         </p>
 
-        <h1 className="fade-up mt-6 font-pixel text-base leading-relaxed text-orange-400 pixel-text sm:text-3xl lg:text-5xl">
-          Assalaamualaikum
-        </h1>
+        <div className="fade-up w-full flex justify-center mt-2 items-center relative pt-4">
+          <CeriaTitle />
+        </div>
 
-        <p className="fade-up mt-6 max-w-xl text-2xl leading-tight text-ink">
-          Selamat datang di pantai seru kami! Ayo ikut lomba-lomba
-          seru dan tunjukkan bakatmu, Adik-Adik Sholeh dan Sholehah.
-        </p>
-
-        <div className="fade-up mt-10">
-          <p className="mb-4 font-pixel text-[10px] text-sun pixel-text-sm">
-            HARI H: 27 SEPTEMBER 2026
+          <p className="fade-up max-w-2xl font-bryndan text-sm sm:text-2xl leading-tight text-white bg-[#ea7b36] p-2 rounded-full px-10">
+            "Cerdas dan Berakhlak Mulia"
           </p>
+
+          <div className="flex justify-center items-center gap-6 text-xl">
+            <p className=" p-3 font-bryndan  text-white  sm:text-2xl border-r-2 border-white pr-6">
+              27 SEPTEMBER 2026
+            </p>
+            <p className="font-bryndan text-2xl text-white text-start  flex items-center justify-center gap-2">
+              <HiMapPin
+                className="w-14 h-14" color="orange" />
+              Masjid Baitul Muslimin, <br /> Menuran
+            </p>
+          </div>
+        <div className="fade-up mt-10">
           <CountdownTimer />
         </div>
 
