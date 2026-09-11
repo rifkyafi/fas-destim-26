@@ -20,6 +20,14 @@ export const metadata = {
   title: "Festival Anak Sholeh 2026",
   description:
     "Festival Anak Sholeh 2026: lomba hafalan, adzan, cerita islami, mewarnai, kaligrafi, dan cerdas cermat dengan tema pantai 8-bit.",
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {

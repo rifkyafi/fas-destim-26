@@ -16,7 +16,7 @@ export default function PixelNavbar() {
     <header className="fixed inset-x-0 top-0 z-40 w-full px-2 sm:px-6 py-2 sm:py-4 pointer-events-none">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 sm:gap-4 pointer-events-auto mb-4 ">
         {/* Logo Container */}
-        <Link href="/" className="shrink-0 flex items-center rotate-270" onClick={closeMenu}>
+        <Link href="/" className="shrink-0 flex items-center" onClick={closeMenu}>
           <Image
             src={LogoDestim}
             alt="Logo Destim"
