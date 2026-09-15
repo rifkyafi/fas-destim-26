@@ -20,7 +20,7 @@ export default function PixelNavbar() {
           <Image
             src={LogoDestim}
             alt="Logo Destim"
-            className="w-16 h-20 sm:w-24 sm:h-28 object-contain drop-shadow-[2px_2px_0_rgba(0,0,0,0.3)] transition-transform hover:scale-105"
+            className="w-16 h-20 sm:w-24 sm:h-28 object-contain drop-shadow-[2px_2px_0_rgba(0,0,0,0.3)] transition-transform hover:scale-105 rotate-180"
             priority
           />
         </Link>

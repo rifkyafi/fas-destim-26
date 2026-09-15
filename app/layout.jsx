@@ -20,6 +20,18 @@ export const metadata = {
   title: "Festival Anak Sholeh 2026",
   description:
     "Festival Anak Sholeh 2026: lomba hafalan, adzan, cerita islami, mewarnai, kaligrafi, dan cerdas cermat dengan tema pantai 8-bit.",
+  openGraph: {
+    title: "Festival Anak Sholeh 2026",
+    description: "Festival Anak Sholeh Desa Timur CERIA 2026 'Cerdas dan Berakhlaq Mulia'. Informasi lomba, pendaftaran, dan dokumentasi.",
+    siteName: "Festival Anak Sholeh 2026",
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Festival Anak Sholeh 2026",
+    description: "Festival Anak Sholeh Desa Timur CERIA 2026 'Cerdas dan Berakhlaq Mulia'.",
+  },
   icons: {
     icon: [
       { url: "/icon.png", type: "image/png" },
@@ -37,21 +49,23 @@ export default function RootLayout({ children }) {
       className={`${pixelFont.variable} ${retroFont.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      <body className="font-retro"  cz-shortcut-listen="true">
+      <body className="font-retro">
         <Script id="fas-theme-init" strategy="beforeInteractive">
-          {`(function () {
-            try {
-              var simpan = localStorage.getItem("fas-theme");
-              var malam;
-              if (simpan === "day" || simpan === "night") {
-                malam = simpan === "night";
-              } else {
-                var jam = new Date().getHours();
-                malam = !(jam >= 6 && jam < 18);
-              }
-              document.documentElement.classList.toggle("dark", malam);
-            } catch (e) {}
-          })();`}
+          {`
+            (function () {
+              try {
+                var simpan = localStorage.getItem("fas-theme");
+                var malam;
+                if (simpan === "day" || simpan === "night") {
+                  malam = simpan === "night";
+                } else {
+                  var jam = new Date().getHours();
+                  malam = !(jam >= 6 && jam < 18);
+                }
+                document.documentElement.classList.toggle("dark", malam);
+              } catch (e) {}
+            })();
+          `}
         </Script>
         {children}
       </body>
