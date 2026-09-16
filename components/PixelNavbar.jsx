@@ -48,7 +48,13 @@ export default function PixelNavbar() {
               href="/informasi"
               className="font-pixel text-xs sm:text-sm text-ink hover:text-amber-700 transition-colors"
             >
-              Informasi Lomba
+              Informasi
+            </Link>
+            <Link
+              href="/dokumentasi"
+              className="font-pixel text-xs sm:text-sm text-ink hover:text-amber-700 transition-colors"
+            >
+              Dokumentasi
             </Link>
             <ThemeToggle />
           </div>
@@ -83,7 +89,14 @@ export default function PixelNavbar() {
               onClick={closeMenu}
               className="pixel-btn bg-[#8d5524] hover:bg-[#613915] text-amber-200 py-2.5 px-4 font-pixel text-xs shadow-[3px_3px_0_0_#16324a] transition-all"
             >
-              📜 Informasi Lomba
+              📜 Informasi
+            </Link>
+            <Link
+              href="/dokumentasi"
+              onClick={closeMenu}
+              className="pixel-btn bg-[#8d5524] hover:bg-[#613915] text-amber-200 py-2.5 px-4 font-pixel text-xs shadow-[3px_3px_0_0_#16324a] transition-all"
+            >
+              📜 Dokumentasi
             </Link>
           </div>
         </div>

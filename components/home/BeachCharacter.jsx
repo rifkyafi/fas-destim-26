@@ -7,7 +7,7 @@ const SALAM_BOY = [
   { salam: "Halo, salam kenal! 😊", motivasi: ["Amanah", "Istiqomah", "Sabar"] },
   { salam: "Hai, selamat datang!", motivasi: ["Bersyukur", "Tawadhu", "Lillah"] },
   { salam: "Apa kabar hari ini? 🌤️", motivasi: ["Ridho", "Qona'ah", "Syukur"] },
-  { salam: "Selamat belajar ya! 📚", motivasi: ["Ilmu", "Akhlak", "Adab"] },
+  { salam: "Hei, senyum dong! 😄", motivasi: ["Ilmu", "Akhlak", "Adab"] },
   { salam: "Semangat, jangan menyerah! 💪", motivasi: ["Tekad", "Doa", "Usaha"] },
   { salam: "Jaga sholat ya~ 🕌", motivasi: ["Khusyuk", "Taqwa", "Dzikir"] },
   { salam: "Hei, senyum dong! 😄", motivasi: ["Shodaqoh", "Ramah", "Mulia"] },
