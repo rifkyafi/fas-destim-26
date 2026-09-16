@@ -29,7 +29,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: "https://festival-anak-sholih-destim.web.app/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "Preview Festival Anak Sholeh",
@@ -40,7 +40,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Festival Anak Sholeh 2026",
     description: "Festival Anak Sholeh Desa Timur CERIA 2026 'Cerdas dan Berakhlaq Mulia'.",
-    images: ["/twitter-image.png"],
+    images: ["https://festival-anak-sholih-destim.web.app/twitter-image.png"],
   },
   icons: {
     icon: [
